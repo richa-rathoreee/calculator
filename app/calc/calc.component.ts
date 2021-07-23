@@ -7,22 +7,24 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 })
 export class CalcComponent implements OnInit {
 
-  
+  userInput: any = "input";
+  result: any = "result";
 
-  constructor() { 
-  //   // console.log(this.container)
-  //   let container= document.querySelector(".upper") as HTMLElement
-  //   console.log(container);
+  constructor() {
 
-  // //    container!.addEventListener("click", (event) => {
-  // //     console.log(event);
-  // //     console.log(event.target);
-  // //     // event.target.style.backgroundColor = "yellow"
-  
-  // // })
   }
-
-  ngOnInit(): void {
+  // cleaar the screen
+  clearScreen() {
+    this.userInput = ""
+    this.result = ""
+  }
+  //key press function
+  pressKey(num:any) {
+    console.log(num);
+    this.userInput=num
+  }
+   ngOnInit(): void {
+     
   }
 
 }
