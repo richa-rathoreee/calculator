@@ -1,0 +1,45 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    border: 2px black solid;
+    height: 70vh;
+    width: 23%;
+    margin: auto;
+    background-color: #fff;
+}
+.upper{
+    border: black 1px solid;
+    height: 25vh;
+    width: 100%;
+}
+.upper>div{
+    float:right
+
+}
+.lower{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    
+    
+}
+.lower>div{
+    margin: 0px auto;
+    padding: 15px 10px;
+}
+.orange{
+    color:#f16e22fc;
+    
+}
+.controls{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.grey{
+    color:#5f5b5bf2;
+}
