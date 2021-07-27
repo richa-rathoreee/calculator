@@ -26,6 +26,9 @@
     flex-direction: column;
     align-items: flex-end;
     justify-content: flex-end;
+    /* overflow: hidden; */
+
+    
 }
 .lower{
     display: flex;
@@ -93,6 +96,7 @@
     font-size: 2.5em;
     font-weight: bold;
     color: rgba(39, 37, 37, 0.979);
+    
 
 }
 /* .upper{

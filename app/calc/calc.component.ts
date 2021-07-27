@@ -15,6 +15,7 @@ export class CalcComponent implements OnInit {
 
   constructor() {
 
+
   }
   // cleaar the screen
   clearScreen() {
@@ -35,27 +36,40 @@ export class CalcComponent implements OnInit {
   pressOperator(oprate: any) {
     const lastKey = this.userInput[this.userInput.length - 1]
     console.log("laast key", lastKey)
-    if (lastKey === '/' || lastKey === '*' || lastKey === '-' || lastKey === '+' || lastKey === "%" || lastKey===".") {
+    if (lastKey === '/' || lastKey === '*' || lastKey === '-' || lastKey === '+' || lastKey === "%" || lastKey === ".") {
       // if last key is an operand or . then retrun nothing
       return;
     }
+
     //store the operator
     this.operator = oprate
     console.log("operator", this.operator)
-  
+
     this.userInput = this.userInput + oprate;
 
   }
-  
 
-// get the result of expression
+
+  // get the result of expression
   getAnswer() {
 
-    // this.operandTwo = parseFloat(this.userInput.split(this.operator)[1]);
+    this.operandTwo = parseFloat(this.userInput.split(this.operator)[1]);
     // this eval will evaluate the expression
-    this.result = eval(this.userInput)
+    if (!this.userInput.includes("%")) {
+      this.result = eval(this.userInput)
+
+    }
+    // this.result = eval(this.userInput)
+
     if (this.operator === "%") {
-      this.result = (this.operandOne * this.operandTwo) / 100;
+      if (!this.operandTwo) {
+        this.result = this.operandOne / 100;
+        console.log(this.result)
+      }
+      else {
+        this.result = (this.operandOne * this.operandTwo) / 100;
+      }
+      // this.result=parseFloat(this.result)
     }
   }
 
@@ -66,12 +80,18 @@ export class CalcComponent implements OnInit {
   }
   negative() {
     // this.userInput=Number(this.userInput)
-    // this.userInput =  Math.abs(+this.userInput);
-    this.userInput= +this.userInput* -1
-    console.log(typeof this.userInput, this.userInput)
-    
+    // // this.userInput =  Math.abs(+this.userInput);
+    this.userInput = +this.userInput * -1;
+    // console.log(typeof this.userInput, this.userInput)
+    // if(!this.userInput.includes("-")){
+    //   this.userInput="-"+this.userInput
+    // }
+    // else if(this.userInput[0]==="-"){
+    //   this.userInput=this.userInput.replace("-","")
+    // }
 
-    
+
+
 
 
   }

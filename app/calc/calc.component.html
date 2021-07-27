@@ -95,11 +95,8 @@
     <div class="lower">
         <div class="row first-row">
             <button class="btn controls operations" type="button" (click)="clearScreen()">AC</button>
-            <button class="btn controls operations plus-minus" type="button" (click)="negative()">
-                <div class="fas fa-plus"></div>
-                <div class="fas fa-minus"></div>
-
-            </button>
+            <button class="btn controls operations" type="button" (click)="backSpace()"> <i
+                class="fas fa-backspace"></i></button>
             <button class="btn controls operations" type="button" (click)="pressOperator('%')">
                 <i class="fas fa-percentage"></i>
             </button>
@@ -135,8 +132,12 @@
         <div class="row row-five">
             <button class="btn controls key " type="button" (click)="pressKey('0')">0</button>
             <button class="btn controls key " type="button" (click)="pressOperator('.')">.</button>
-            <button class="btn controls operations" type="button" (click)="backSpace()"> <i
-                    class="fas fa-backspace"></i></button>
+            <button class="btn controls operations plus-minus" type="button" (click)="negative()">
+                <div class="fas fa-plus"></div>
+                <div class="fas fa-minus"></div>
+
+            </button>
+         
             <button class="btn controls operations equal" type="button" (click)="getAnswer()"><i
                     class="fas fa-equals"></i></button>
         </div>
