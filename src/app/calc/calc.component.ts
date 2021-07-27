@@ -12,6 +12,7 @@ export class CalcComponent implements OnInit {
   operandOne: any = "";
   operandTwo: any = "";
   operator: any = "";
+  neg: any = ""
 
   constructor() {
 
@@ -29,6 +30,22 @@ export class CalcComponent implements OnInit {
     // store the operand one
     this.operandOne = parseFloat(this.userInput);
     console.log("operand one", this.operandOne)
+this.getAnswer()
+
+    if (this.userInput.length > 10) {
+      const input = document.getElementById("userinput") as HTMLElement
+      const res = document.getElementById("res") as HTMLElement
+
+      console.log(input);
+      console.log(res);
+
+      // input.setAttribute("style", "fontSize:1em")
+      input.style.fontSize="18px"
+      input.className="wrap"
+      // res.setAttribute("style", "fontSize:1.5em")
+      res.style.fontSize="25px"
+
+    }
 
   }
 
@@ -71,7 +88,7 @@ export class CalcComponent implements OnInit {
       }
       // this.result=parseFloat(this.result)
     }
-    
+
   }
 
   backSpace() {
@@ -80,12 +97,13 @@ export class CalcComponent implements OnInit {
 
   }
   negative() {
-  
-   this.userInput=this.userInput+ this.userInput[this.userInput.length - 1]
+
+    this.neg = this.userInput;
+
 
 
     this.userInput = +this.userInput * -1;
-  
+
 
 
 

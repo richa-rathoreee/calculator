@@ -93,11 +93,15 @@
 .display-result{
    /* padding: 20px 4px 4px 4px; */
 
-    font-size: 2.5em;
+    font-size: 2.0em;
     font-weight: bold;
     color: rgba(39, 37, 37, 0.979);
     
 
+}
+.wrap{
+    word-break: break-all;
+    
 }
 /* .upper{
     border: black 1px solid;

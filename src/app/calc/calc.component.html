@@ -84,12 +84,13 @@
     <div class="upper">
         <!-- // User Input -->
 
-        <div class="display-input" type="text">{{userInput}}</div>
+        <div class="display-input wrap" type="text" id="userinput">{{userInput}}</div>
+        <div class="display-input" id=" userinput-two"></div>
 
 
         <!-- Results -->
-        <div class="display-result" *ngIf="!result">{{userInput}}</div>
-        <div class="display-result" type="text">{{result}}</div>
+        <!-- <div class="display-result" *ngIf="!result" id ="userinput">{{userInput}}</div> -->
+        <div class="display-result" type="text" id="res">{{result}}</div>
 
     </div>
     <div class="lower">
