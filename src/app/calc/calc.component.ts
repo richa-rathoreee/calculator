@@ -71,6 +71,7 @@ export class CalcComponent implements OnInit {
       }
       // this.result=parseFloat(this.result)
     }
+    
   }
 
   backSpace() {
@@ -79,16 +80,12 @@ export class CalcComponent implements OnInit {
 
   }
   negative() {
-    // this.userInput=Number(this.userInput)
-    // // this.userInput =  Math.abs(+this.userInput);
+  
+   this.userInput=this.userInput+ this.userInput[this.userInput.length - 1]
+
+
     this.userInput = +this.userInput * -1;
-    // console.log(typeof this.userInput, this.userInput)
-    // if(!this.userInput.includes("-")){
-    //   this.userInput="-"+this.userInput
-    // }
-    // else if(this.userInput[0]==="-"){
-    //   this.userInput=this.userInput.replace("-","")
-    // }
+  
 
 
 

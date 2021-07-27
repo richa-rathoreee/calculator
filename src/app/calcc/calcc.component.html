@@ -1,0 +1,144 @@
+<!-- <p>calc works!</p>
+
+
+<div class="container" id="e" >
+    <div class="upper">
+        <div>
+        <div class="">
+            123
+        </div>
+        <div class="">
+            123
+        </div>
+        </div>
+    </div>
+    <div class="lower">
+        <div class="controls orange">
+            AC
+        </div>
+        <div class="controls orange">
+            +-
+        </div>
+        <div class="controls orange">
+            %
+        </div>
+        <div class="controls orange">
+            <i class="fas fa-divide"></i>
+        </div>
+        <div class="controls grey">
+            7
+        </div>
+        <div class="controls grey">
+            8
+        </div>
+        <div class="controls grey">
+            9
+        </div>
+        <div class="controls orange">
+            x
+        </div>
+        <div class="controls grey">
+            4
+        </div>
+        <div class="controls grey">
+            5
+        </div>
+        <div class="controls grey">
+            6
+        </div>
+        <div class="controls orange">
+            -
+        </div>
+        <div class="controls grey">
+            1
+        </div>
+        <div class="controls grey">
+            2
+        </div>
+        <div class="controls grey">
+            3
+        </div>
+        <div class="controls orange">
+            +
+        </div>
+        <div class="controls grey">
+            0
+        </div>
+        <div class="controls grey">
+            .
+        </div>
+        <div class="controls orange">
+            <i class="fas fa-backspace"></i>
+        </div>
+        <div class="controls orange equal">
+            =
+        </div>
+
+    </div>
+</div> -->
+
+
+<p>calcc works!</p>
+
+<div class="container">
+    <div class="upper">
+        <!-- // User Input -->
+
+        <div class="display-input" type="text">{{userInput}}</div>
+
+
+        <!-- Results -->
+        <div class="display-result" *ngIf="!result">{{userInput}}</div>
+        <div class="display-result" type="text">{{result}}</div>
+
+    </div>
+    <div class="lower">
+        <div class="row first-row">
+            <button class="btn controls operations" type="button" (click)="clearScreen()">AC</button>
+            <button class="btn controls operations plus-minus" type="button" (click)="negative()">
+                <div class="fas fa-plus"></div>
+                <div class="fas fa-minus"></div>
+
+            </button>
+            <button class="btn controls operations" type="button" (click)="pressOperator('%')">
+                <i class="fas fa-percentage"></i>
+            </button>
+            <button class="btn controls operations" type="button" (click)="pressOperator('/')">
+                <i class="fas fa-divide"></i>
+
+            </button>
+        </div>
+
+        <div class="row row-second">
+            <button class="btn controls key" type="button" (click)="pressKey('7')">7</button>
+            <button class="btn controls key" type="button" (click)="pressKey('8')">8</button>
+            <button class="btn controls key" type="button" (click)="pressKey('9')">9</button>
+            <button class="btn controls operations" type="button" (click)="pressOperator('*')">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="row row-third">
+            <button class="btn controls key " type="button" (click)="pressKey('4')">4</button>
+            <button class="btn controls key " type="button" (click)="pressKey('5')">5</button>
+            <button class="btn controls key " type="button" (click)="pressKey('6')">6</button>
+            <button class="btn controls operations" type="button" (click)="pressOperator('-')"><i
+                    class="fas fa-minus"></i></button>
+        </div>
+        <div class="row row-four">
+            <button class="btn controls key " type="button" (click)="pressKey('1')">1</button>
+            <button class="btn controls key " type="button" (click)="pressKey('2')">2</button>
+            <button class="btn controls key " type="button" (click)="pressKey('3')">3</button>
+            <button class="btn controls operations" type="button" (click)="pressOperator('+')">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+        <div class="row row-five">
+            <button class="btn controls key " type="button" (click)="pressKey('0')">0</button>
+            <button class="btn controls key " type="button" (click)="pressKey('.')">.</button>
+            <button class="btn controls operations" type="button" (click)="backSpace()"> <i
+                    class="fas fa-backspace"></i></button>
+            <button class="btn controls operations equal" type="button" (click)="getAnswer()"><i
+                    class="fas fa-equals"></i></button>
+        </div>
+    </div>
+</div>
