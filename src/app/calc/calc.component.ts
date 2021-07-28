@@ -12,7 +12,7 @@ export class CalcComponent implements OnInit {
   operandOne: any = "";
   operandTwo: any = "";
   operator: any = "";
-  neg: any = ""
+  inputArr: any = [];
 
   constructor() {
 
@@ -21,7 +21,9 @@ export class CalcComponent implements OnInit {
   // cleaar the screen
   clearScreen() {
     this.userInput = ""
-    this.result = ""
+    this.result = "";
+    this.operator = ""
+
   }
   //key number press function
   pressKey(num: any) {
@@ -30,7 +32,13 @@ export class CalcComponent implements OnInit {
     // store the operand one
     this.operandOne = parseFloat(this.userInput);
     console.log("operand one", this.operandOne)
-this.getAnswer()
+    if (this.userInput[this.userInput.length - 1] === ".") {
+
+      return;
+
+    }
+
+    this.getAnswer();
 
     if (this.userInput.length > 10) {
       const input = document.getElementById("userinput") as HTMLElement
@@ -40,10 +48,10 @@ this.getAnswer()
       console.log(res);
 
       // input.setAttribute("style", "fontSize:1em")
-      input.style.fontSize="18px"
-      input.className="wrap"
+      input.style.fontSize = "18px"
+      input.className = "wrap"
       // res.setAttribute("style", "fontSize:1.5em")
-      res.style.fontSize="25px"
+      res.style.fontSize = "25px"
 
     }
 
@@ -53,13 +61,16 @@ this.getAnswer()
   pressOperator(oprate: any) {
     const lastKey = this.userInput[this.userInput.length - 1]
     console.log("laast key", lastKey)
-    if (lastKey === '/' || lastKey === '*' || lastKey === '-' || lastKey === '+' || lastKey === "%" || lastKey === ".") {
+    if (lastKey === '/' || lastKey === '*' || lastKey === '-' || lastKey === '+' || lastKey === "%") {
       // if last key is an operand or . then retrun nothing
       return;
     }
+    if (this.userInput == "" && (oprate === "/" || oprate === "*" || oprate === "%" || oprate === "+")) {
+      return
+    }
 
     //store the operator
-    this.operator = oprate
+    this.operator = oprate;
     console.log("operator", this.operator)
 
     this.userInput = this.userInput + oprate;
@@ -69,37 +80,52 @@ this.getAnswer()
 
   // get the result of expression
   getAnswer() {
+    console.log(this.userInput)
+    console.log(this.operator)
+    this.inputArr = this.userInput.split(this.operator);
+    console.log(this.inputArr.indexOf("%"))
+    console.log(this.inputArr);
+    let operator1 = parseFloat(this.inputArr[0])
+    for (let i = 0; i <= this.inputArr.length - 1; i++) {
+      let operator2 = parseFloat(this.inputArr[i + 1]);
+      if (this.operator == "%") {
+        if (!operator2) {
+          console.log("sd;")
+          operator1 = operator1 / 100;
+          this.result = operator1;
+          break;
 
-    this.operandTwo = parseFloat(this.userInput.split(this.operator)[1]);
-    // this eval will evaluate the expression
-    if (!this.userInput.includes("%")) {
-      this.result = eval(this.userInput)
+        }
+        else {
+          operator1 = this.result * operator2
+          this.result = operator1
+          break;
+        }
+
+      }
+      // console.log("i", this.inputArr[i]);
+      // console.log("i+1", this.inputArr[i + 1])
+      // console.log();
+
+
 
     }
-    // this.result = eval(this.userInput)
+    this.result = eval(this.userInput);
 
-    if (this.operator === "%") {
-      if (!this.operandTwo) {
-        this.result = this.operandOne / 100;
-        console.log(this.result)
-      }
-      else {
-        this.result = (this.operandOne * this.operandTwo) / 100;
-      }
-      // this.result=parseFloat(this.result)
-    }
+
 
   }
-
+  showAns() {
+    const res = document.getElementById("res") as HTMLElement
+    res.style.fontSize = "50px"
+    this.userInput = ""
+  }
   backSpace() {
     this.userInput = this.userInput.substr(0, this.userInput.length - 1);
     this.result = "";
 
   }
   negative() {
-
-    this.neg = this.userInput;
-
 
 
     this.userInput = +this.userInput * -1;

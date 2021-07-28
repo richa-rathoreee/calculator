@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { CalcComponent } from './calc/calc.component';
 
 import { StringComponent } from './string/string.component';
+import { CalccComponent } from './calcc/calcc.component';
 
 
 
@@ -15,6 +16,7 @@ import { StringComponent } from './string/string.component';
     AppComponent,
     CalcComponent,
     StringComponent,
+    CalccComponent,
  
 
     

@@ -1,0 +1,140 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    border: 2px rgba(126, 123, 123, 0.301) solid;
+    height: 75vh;
+    width: 23%;
+    margin: auto;
+    padding: 10px;
+    border-radius: 10px;
+    /* background-color: #fff; */
+}
+
+.upper{
+
+ /* border: black 1px solid; */
+ background-color: #ebe6e581;
+    height: 30vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    /* overflow: hidden; */
+
+    
+}
+.lower{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 50vh;
+    margin: 10px 0px;
+    
+    /* border:2px solid black */
+
+}
+.row{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    height: 9vh;
+    
+    
+}
+.btn{
+    border:none;
+    background-color: #fff;
+    font-weight: bold;
+    font-size:1.2rem
+    
+}
+.btn:hover{
+    background: #ebe6e581;
+    cursor: pointer;
+    border-radius: 2px;;
+}
+.operations{
+    color:#f16e22fc;
+    
+}
+.key{
+    color: rgb(99, 96, 93);
+}
+.equal{
+  
+    background-color: #f16e22fc;
+    color: #fff;
+    border-radius: 3px;
+    /* height: 8vh;
+    width: 5vw; */
+}
+.plus-minus{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+}
+.display-input{
+   /* align-self: flex-end; */
+   padding: 5px;
+    font-size:  1.5em;
+    font-weight: bold;
+    color: rgba(128, 128, 128, 0.979);
+
+
+}
+.display-result{
+   /* padding: 20px 4px 4px 4px; */
+
+    font-size: 2.0em;
+    font-weight: bold;
+    color: rgba(39, 37, 37, 0.979);
+    
+
+}
+.wrap{
+    word-break: break-all;
+    
+}
+/* .upper{
+    border: black 1px solid;
+    height: 25vh;
+    width: 100%;
+}
+.upper>div{
+    float:right
+
+}
+.lower{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    
+    
+}
+.lower>div{
+    margin: 0px auto;
+    padding: 15px 10px;
+}
+.orange{
+    color:#f16e22fc;
+    
+}
+.controls{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.grey{
+    color:#5f5b5bf2;
+}
+.equal{
+    background-color:#f16e22fc; 
+    color: #fff;
+    border-radius: 2px;
+}  */
