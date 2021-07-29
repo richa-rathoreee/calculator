@@ -34,9 +34,29 @@ inputShow:any="";
   }
   //key number press function
   pressKey(num: any) {
-    this.userInput=this.userInput+num;
-
-    this.getAnswer();
+    //Do Not Allow . more than once
+    if (num==".") {
+      if (this.userInput !="" ) {
+ 
+        const lastNum=this.getLastOperand()
+        console.log(lastNum.lastIndexOf("."))
+        if (lastNum.lastIndexOf(".") >= 0) return;
+      }
+    }
+ 
+    //Do Not Allow 0 at beginning. 
+    //Javascript will throw Octal literals are not allowed in strict mode.
+    if (num=="0") {
+      if (this.userInput=="" ) {
+        return;
+      }
+      const PrevKey = this.userInput[this.userInput.length - 1];
+      if (PrevKey === '/' || PrevKey === '*' || PrevKey === '-' || PrevKey === '+')  {
+          return;
+      }
+    }
+    this.userInput = this.userInput + num
+    this.getAnswer()
  
 
     if (this.userInput.length > 10) {
@@ -55,7 +75,16 @@ inputShow:any="";
 
   }
 
-
+  getLastOperand() {
+    let pos:number;
+    console.log(this.userInput)
+    pos=this.userInput.toString().lastIndexOf("+")
+    if (this.userInput.toString().lastIndexOf("-") > pos) pos=this.userInput.lastIndexOf("-")
+    if (this.userInput.toString().lastIndexOf("*") > pos) pos=this.userInput.lastIndexOf("*")
+    if (this.userInput.toString().lastIndexOf("/") > pos) pos=this.userInput.lastIndexOf("/")
+    console.log('Last '+this.userInput.substr(pos+1))
+    return this.userInput.substr(pos+1)
+  }
 
   pressOperator(oprate: any) {
     console.log(this.userInput)
@@ -66,7 +95,7 @@ inputShow:any="";
     }
     this.userInput+=oprate;
     this.operator=oprate;
-    
+    this.getAnswer();
 
 
   }
@@ -74,21 +103,47 @@ inputShow:any="";
 
   // get the result of expression
   getAnswer() {
-    if(this.userInput.includes("%")){
+    this.inputArr = this.userInput.split(this.operator);
+    console.log(this.inputArr)
+    let operandOne = parseFloat(this.inputArr[0])
+    console.log(operandOne);
+    for (let i = 0; i <= this.inputArr.length - 1; i++) {
+      console.log(i, this.inputArr[i]);
+      console.log(i + 1, this.inputArr[i + 1])
+      let num = parseFloat(this.inputArr[i + 1]);
+      if (this.operator === "%") {
+        if (!num) {
+          operandOne = operandOne / 100;
+          this.inputArr[0]=operandOne
+          console.log(this.inputArr[i])
+          console.log(operandOne);
+          break;
+        }
+        else {
+          operandOne = operandOne * num / 100;
+          this.inputArr[0]=operandOne
+          console.log(this.inputArr[i])
+
+          console.log(operandOne);
+          break;
+
+        }
+
+      }
+      else{
+      operandOne=eval(this.userInput)
+      this.result=operandOne;
+      }
 
     }
-    this.result=eval(this.userInput)
-    console.log(this.userInput);
-    console.log(this.operator);
 
-
-
-    
+  
   }
   showAns() {
     const res = document.getElementById("res") as HTMLElement
     res.style.fontSize = "50px"
-    this.userInput = ""
+    this.result=this.result
+    
   }
 
   negative() {
@@ -114,15 +169,17 @@ inputShow:any="";
 
 log(){
   
-  // this.inputShow=`${this.userInput}log(${this.userInput})`
-  this.result=Math.log(this.userInput)
+
 
 
 }
 ln(){
-  // this.inputShow=`ln(${this.userInput})`;
-  this.result=Math
+  this.userInput=`ln(${this.userInput})`
+  this.result=Math.log(this.result);
 
+}
+sqrt(){
+  this.result=Math.sqrt(this.userInput)
 }
 
   ngOnInit(): void {

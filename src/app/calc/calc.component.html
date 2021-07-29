@@ -84,7 +84,7 @@
     <div class="upper">
         <!-- // User Input -->
 
-        <div class="display-input wrap" type="text" id="userinput">{{inputShow}}</div>
+        <div class="display-input wrap" type="text" id="userinput">{{userInput}}</div>
         
 
 
@@ -116,7 +116,7 @@
         <div class="row first-row">
             <button class="btn controls key log ">e</button>
             <button class="btn controls key ln">tan</button>
-            <button class="btn controls key Lnv">root</button>
+            <button class="btn controls key Lnv"(click)="sqrt()">root</button>
             
         </div>
         <div class="row first-row">
@@ -131,8 +131,7 @@
         <div class="row first-row">
 
             <button class="btn controls operations" type="button" (click)="clearScreen()">AC</button>
-            <button class="btn controls operations" type="button" (click)="backSpace()"> <i
-                class="fas fa-backspace"></i></button>
+            <button class="btn controls operations" type="button" (click)="backSpace()"> CE</button>
             <button class="btn controls operations" type="button" (click)="pressOperator('%')">
                 <i class="fas fa-percentage"></i>
             </button>
