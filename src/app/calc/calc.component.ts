@@ -114,13 +114,13 @@ inputShow:any="";
 
 log(){
   
-  this.inputShow=`${this.userInput}log(${this.userInput})`
+  // this.inputShow=`${this.userInput}log(${this.userInput})`
   this.result=Math.log(this.userInput)
 
 
 }
 ln(){
-  this.inputShow=`ln(${this.userInput})`;
+  // this.inputShow=`ln(${this.userInput})`;
   this.result=Math
 
 }
