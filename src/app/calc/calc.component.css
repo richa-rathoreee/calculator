@@ -9,13 +9,22 @@
     flex-direction: column;
     border: 2px rgba(126, 123, 123, 0.301) solid;
     height: 75vh;
-    width: 23%;
+    width: 45%;
     margin: auto;
     padding: 10px;
     border-radius: 10px;
     /* background-color: #fff; */
 }
+.container-buttons{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.sc-fi{
+    margin: 10px 0px;
+    border-right: 1px grey solid;
+    
 
+}
 .upper{
 
  /* border: black 1px solid; */

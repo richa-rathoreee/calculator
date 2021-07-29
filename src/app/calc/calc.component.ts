@@ -7,6 +7,7 @@ import { Component, OnInit, } from '@angular/core';
 })
 export class CalcComponent implements OnInit {
 
+inputShow:any="";
   userInput: any = "";
   result: any = "";
   operandOne: any = "";
@@ -25,20 +26,18 @@ export class CalcComponent implements OnInit {
     this.operator = ""
 
   }
+  backSpace() {
+    this.userInput = this.userInput.substr(0, this.userInput.length - 1);
+    this.result = "";
+    this.inputShow="";
+
+  }
   //key number press function
   pressKey(num: any) {
-    console.log(num);
-    this.userInput = this.userInput + num;
-    // store the operand one
-    this.operandOne = parseFloat(this.userInput);
-    console.log("operand one", this.operandOne)
-    if (this.userInput[this.userInput.length - 1] === ".") {
-
-      return;
-
-    }
+    this.userInput=this.userInput+num;
 
     this.getAnswer();
+ 
 
     if (this.userInput.length > 10) {
       const input = document.getElementById("userinput") as HTMLElement
@@ -47,10 +46,9 @@ export class CalcComponent implements OnInit {
       console.log(input);
       console.log(res);
 
-      // input.setAttribute("style", "fontSize:1em")
+      
       input.style.fontSize = "18px"
       input.className = "wrap"
-      // res.setAttribute("style", "fontSize:1.5em")
       res.style.fontSize = "25px"
 
     }
@@ -58,77 +56,53 @@ export class CalcComponent implements OnInit {
   }
 
 
+
   pressOperator(oprate: any) {
-    const lastKey = this.userInput[this.userInput.length - 1]
-    console.log("laast key", lastKey)
-    if (lastKey === '/' || lastKey === '*' || lastKey === '-' || lastKey === '+' || lastKey === "%") {
-      // if last key is an operand or . then retrun nothing
+    console.log(this.userInput)
+    let lastKey=this.userInput[this.userInput.length-1]
+    console.log(lastKey)
+    if (lastKey === '/' || lastKey === '*' || lastKey === '-' || lastKey === '+'|| lastKey==="%")  {
       return;
     }
-    if (this.userInput == "" && (oprate === "/" || oprate === "*" || oprate === "%" || oprate === "+")) {
-      return
-    }
+    this.userInput+=oprate;
+    this.operator=oprate;
+    
 
-    //store the operator
-    this.operator = oprate;
-    console.log("operator", this.operator)
-
-    this.userInput = this.userInput + oprate;
 
   }
 
 
   // get the result of expression
   getAnswer() {
-    console.log(this.userInput)
-    console.log(this.operator)
-    this.inputArr = this.userInput.split(this.operator);
-    console.log(this.inputArr.indexOf("%"))
-    console.log(this.inputArr);
-    let operator1 = parseFloat(this.inputArr[0])
-    for (let i = 0; i <= this.inputArr.length - 1; i++) {
-      let operator2 = parseFloat(this.inputArr[i + 1]);
-      if (this.operator == "%") {
-        if (!operator2) {
-          console.log("sd;")
-          operator1 = operator1 / 100;
-          this.result = operator1;
-          break;
-
-        }
-        else {
-          operator1 = this.result * operator2
-          this.result = operator1
-          break;
-        }
-
-      }
-      // console.log("i", this.inputArr[i]);
-      // console.log("i+1", this.inputArr[i + 1])
-      // console.log();
-
-
+    if(this.userInput.includes("%")){
 
     }
-    this.result = eval(this.userInput);
+    this.result=eval(this.userInput)
+    console.log(this.userInput);
+    console.log(this.operator);
 
 
 
+    
   }
   showAns() {
     const res = document.getElementById("res") as HTMLElement
     res.style.fontSize = "50px"
     this.userInput = ""
   }
-  backSpace() {
-    this.userInput = this.userInput.substr(0, this.userInput.length - 1);
-    this.result = "";
 
-  }
   negative() {
 
 
-    this.userInput = +this.userInput * -1;
+    if (Math.sign(parseInt(this.userInput)) === 1) {
+      const sign = -Math.abs(parseInt(this.userInput));
+      this.userInput = sign.toString();
+    } else if (Math.sign(parseInt(this.userInput)) === -1) {
+      const sign = Math.abs(parseInt(this.userInput));
+      this.userInput = sign.toString();
+    } else {
+      this.userInput = this.userInput;
+    }
 
 
 
@@ -136,9 +110,24 @@ export class CalcComponent implements OnInit {
 
 
   }
+  // ///////
+
+log(){
+  
+  this.inputShow=`${this.userInput}log(${this.userInput})`
+  this.result=Math.log(this.userInput)
+
+
+}
+ln(){
+  this.inputShow=`ln(${this.userInput})`;
+  this.result=Math
+
+}
 
   ngOnInit(): void {
 
   }
+  
 
 }

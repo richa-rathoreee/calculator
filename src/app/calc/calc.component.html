@@ -84,7 +84,7 @@
     <div class="upper">
         <!-- // User Input -->
 
-        <div class="display-input wrap" type="text" id="userinput">{{userInput}}</div>
+        <div class="display-input wrap" type="text" id="userinput">{{inputShow}}</div>
         
 
 
@@ -93,8 +93,43 @@
         <div class="display-result" type="text" id="res">{{result}}</div>
 
     </div>
+    <div class="container-buttons">
+    <div class="sc-fi">
+        <div class="row first-row">
+            <button class=" btn controls key rad ">Rad|Deg</button>
+            <button class=" btn controls key not">x!</button>
+
+        </div>
+        <div class="row first-row">
+            <button class=" btn controls key  log " (click)="log()">log</button>
+            <button class="btn controls key " (click)="ln()">ln</button>
+            <button class="btn controls key Lnv">lnv</button>
+            
+        </div>
+   
+        <div class="row first-row">
+            <button class=" btn controls log key ">pi</button>
+            <button class="btn controls key ln">cos</button>
+            <button class="btn controls key Lnv">sin</button>
+            
+        </div>
+        <div class="row first-row">
+            <button class="btn controls key log ">e</button>
+            <button class="btn controls key ln">tan</button>
+            <button class="btn controls key Lnv">root</button>
+            
+        </div>
+        <div class="row first-row">
+            <button class="btn controls key log ">Ans</button>
+            <button class="btn controls key ln">Exp</button>
+            <button class="btn controls key Lnv">x^y</button>
+            
+        </div>
+        
+    </div>
     <div class="lower">
         <div class="row first-row">
+
             <button class="btn controls operations" type="button" (click)="clearScreen()">AC</button>
             <button class="btn controls operations" type="button" (click)="backSpace()"> <i
                 class="fas fa-backspace"></i></button>
@@ -142,5 +177,6 @@
             <button class="btn controls operations equal" type="button" (click)="showAns()"><i
                     class="fas fa-equals"></i></button>
         </div>
+    </div>
     </div>
 </div>
