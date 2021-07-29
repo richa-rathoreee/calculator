@@ -97,7 +97,7 @@
     <div class="sc-fi">
         <div class="row first-row">
             <button class=" btn controls key rad ">Rad|Deg</button>
-            <button class=" btn controls key not">x!</button>
+            <button class=" btn controls key not"(click)="pressOperator('!')">x!</button>
 
         </div>
         <div class="row first-row">
@@ -108,7 +108,7 @@
         </div>
    
         <div class="row first-row">
-            <button class=" btn controls log key ">pi</button>
+            <button class=" btn controls log key "(click)="pressOperator('π')">pi</button>
             <button class="btn controls key ln">cos</button>
             <button class="btn controls key Lnv">sin</button>
             
