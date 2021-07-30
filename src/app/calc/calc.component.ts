@@ -78,7 +78,10 @@ export class CalcComponent implements OnInit {
     if (this.userInput.toString().lastIndexOf("%") > pos) pos = this.userInput.lastIndexOf("%")
     if (this.userInput.toString().lastIndexOf("!") > pos) pos = this.userInput.lastIndexOf("!")
     if (this.userInput.toString().lastIndexOf("π") > pos) pos = this.userInput.lastIndexOf("π")
-    // if (this.userInput.toString().lastIndexOf("e") > pos) pos = this.userInput.lastIndexOf("e")
+    if (this.userInput.toString().lastIndexOf("e") > pos) pos = this.userInput.lastIndexOf("e")
+    if (this.userInput.toString().lastIndexOf("sin(") > pos) pos = this.userInput.lastIndexOf("sin(")
+
+
 
 
 
@@ -187,11 +190,36 @@ export class CalcComponent implements OnInit {
       let num= Math.cos(this.userInput[index+4])
       this.result=num;
       
+    
+    }
+    if(this.operator==="sin("){
+      console.log(this.operator);
+      const index = this.userInput.toString().indexOf("sin(");
+      console.log(index);
+      console.log(this.userInput[index+4]);
+      let num= Math.sin(this.userInput[index+4])
+      this.result=num;
       
+    
+    }
+    if(this.operator==="tan("){
+      console.log(this.operator);
+      const index = this.userInput.toString().indexOf("tan(");
+      console.log(index);
+      console.log(this.userInput[index+4]);
+      let num= Math.sin(this.userInput[index+4])
+      this.result=num;      
 
     }
+    if (this.operator === "√") {
+      console.log(this.operator);
+      const index = this.userInput.toString().indexOf("√");
+      if (!this.userInput[index + 1]) this.result = null
 
+      // console.log(this.userInput[index-1],this.userInput[index+1])
+   
 
+    }
 
 
 

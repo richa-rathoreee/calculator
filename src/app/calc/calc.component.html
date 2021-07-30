@@ -102,7 +102,7 @@
         </div>
         <div class="row first-row">
             <button class=" btn controls key  log " (click)="pressOperator('log(')">log</button>
-            <button class="btn controls key " (click)="ln()">ln</button>
+            <button class="btn controls key " (click)="pressOperator('ln(')">ln</button>
             <button class="btn controls key Lnv">lnv</button>
             
         </div>
@@ -110,13 +110,13 @@
         <div class="row first-row">
             <button class=" btn controls log key "(click)="pressOperator('π')">pi</button>
             <button class="btn controls key ln" (click)="pressOperator('cos(')">cos</button>
-            <button class="btn controls key Lnv">sin</button>
+            <button class="btn controls key Lnv"(click)="pressOperator('sin(')">sin</button>
             
         </div>
         <div class="row first-row">
             <button class="btn controls key log " (click)="pressOperator('e')">e</button>
-            <button class="btn controls key ln">tan</button>
-            <button class="btn controls key Lnv"(click)="sqrt()">root</button>
+            <button class="btn controls key ln"(click)="pressOperator('tan(')">tan</button>
+            <button class="btn controls key Lnv"(click)="pressOperator('√')">root</button>
             
         </div>
         <div class="row first-row">
