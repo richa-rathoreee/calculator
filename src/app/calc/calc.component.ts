@@ -10,10 +10,9 @@ export class CalcComponent implements OnInit {
   inputShow: any = "";
   userInput: any = "";
   result: any = "";
-  operandOne: any = "";
-  operandTwo: any = "";
   operator: any = "";
   inputArr: any = [];
+
 
   constructor() {
 
@@ -26,6 +25,7 @@ export class CalcComponent implements OnInit {
     this.operator = ""
 
   }
+  //backspace
   backSpace() {
     this.userInput = this.userInput.substr(0, this.userInput.length - 1);
     this.result = "";
@@ -39,6 +39,7 @@ export class CalcComponent implements OnInit {
       if (this.userInput != "") {
 
         const lastNum = this.getLastOperand()
+        console.log(lastNum)
         console.log(lastNum.lastIndexOf("."))
         if (lastNum.lastIndexOf(".") >= 0) return;
       }
@@ -50,7 +51,7 @@ export class CalcComponent implements OnInit {
       if (this.userInput == "") {
         return;
       }
-   
+
     }
     this.userInput = this.userInput + num
     this.getAnswer()
@@ -59,11 +60,6 @@ export class CalcComponent implements OnInit {
     if (this.userInput.length > 10) {
       const input = document.getElementById("userinput") as HTMLElement
       const res = document.getElementById("res") as HTMLElement
-
-      console.log(input);
-      console.log(res);
-
-
       input.style.fontSize = "18px"
       input.className = "wrap"
       res.style.fontSize = "25px"
@@ -81,6 +77,9 @@ export class CalcComponent implements OnInit {
     if (this.userInput.toString().lastIndexOf("/") > pos) pos = this.userInput.lastIndexOf("/")
     if (this.userInput.toString().lastIndexOf("%") > pos) pos = this.userInput.lastIndexOf("%")
     if (this.userInput.toString().lastIndexOf("!") > pos) pos = this.userInput.lastIndexOf("!")
+    if (this.userInput.toString().lastIndexOf("π") > pos) pos = this.userInput.lastIndexOf("π")
+    // if (this.userInput.toString().lastIndexOf("e") > pos) pos = this.userInput.lastIndexOf("e")
+
 
 
     console.log('Last ' + this.userInput.substr(pos + 1))
@@ -88,14 +87,14 @@ export class CalcComponent implements OnInit {
   }
 
   pressOperator(oprate: any) {
-    if(this.userInput==""){
-      return;
-    }
+    // if (this.userInput == "") {
+    //   return;
+    // }
     console.log(this.userInput)
     let lastKey = this.userInput[this.userInput.length - 1]
     console.log(lastKey)
-    if (lastKey === '/' || lastKey === '*' || lastKey === '-' || lastKey === '+' 
-    || lastKey === "%" || lastKey === "!" || lastKey==="π") {
+    if (lastKey === '/' || lastKey === '*' || lastKey === '-' || lastKey === '+'
+      || lastKey === "%" || lastKey === "!" || lastKey === "π") {
       return;
     }
     this.userInput += oprate;
@@ -105,78 +104,96 @@ export class CalcComponent implements OnInit {
 
   }
 
-
   // get the result of expression
   getAnswer() {
     console.log(this.userInput);
     console.log(this.operator)
-    // this.inputArr = this.userInput.split(this.operator);
-    // console.log(this.inputArr)
-    // let operandOne = parseFloat(this.inputArr[0])
-    // console.log(operandOne);
-    // for (let i = 0; i <= this.inputArr.length - 1; i++) {
-    //   console.log(i, this.inputArr[i]);
-    //   console.log(i + 1, this.inputArr[i + 1])
-    //   let num = parseFloat(this.inputArr[i + 1]);
-    //   if (this.operator === "%") {
-    //     if (!num) {
-    //       operandOne = operandOne / 100;
-    //       this.inputArr[0] = operandOne
-    //       console.log(this.inputArr[i])
-    //       console.log(operandOne);
-    //       break;
-    //     }
-    //     else {
-    //       operandOne = operandOne * num / 100;
-    //       this.inputArr[0] = operandOne
-    //       console.log(this.inputArr[i])
 
-    //       console.log(operandOne);
-    //       break;
-
-    //     }
-
-    //   }
-    //   else {
-    //     operandOne = eval(this.userInput)
-    //     this.result = operandOne;
-    //   }
-
-    // }
-    if(this.operator==="+"|| this.operator==="-"||this.operator==="%"||this.operator==="*"){
-      this.result=eval(this.userInput);
-
-    }
-    if(this.operator==="%"){
-      const index=this.userInput.toString().indexOf("%");
-      console.log(index);
-      let num=this.userInput[index-1];
-     let percent= (this.userInput[index+1])?(num*this.userInput[index+1]):(num/100);
-     this.result=percent;
+    if (this.operator === "+" || this.operator === "-" || this.operator === "/" || this.operator === "*") {
+      this.result = eval(this.userInput);
 
 
     }
-    if(this.operator==="!"){
-      const index=this.userInput.toString().indexOf("!");
+    if (this.operator === "%") {
+      const index = this.userInput.toString().indexOf("%");
       console.log(index);
-     let num=this.userInput[index-1],fact=1;
-     for(let  i=num; i>0;i--) {
-       fact*=i;
-       console.log(fact);
+      let num = this.userInput[index - 1];
+      let percent = (this.userInput[index + 1]) ? (num * this.userInput[index + 1]) : (num / 100);
+      this.result = percent;
+
+
+    }
+    if (this.operator === "!") {
+      const index = this.userInput.toString().indexOf("!");
+      console.log(index);
+      let num = this.userInput[index - 1], fact = 1;
+      for (let i = num; i > 0; i--) {
+        fact *= i;
+        console.log(fact);
 
       }
-      this.result=fact;
+      this.result = fact;
     }
-    if(this.operator==="π"){
+    if (this.operator === "π") {
       console.log(this.operator)
-      const index=this.userInput.toString().indexOf("π");
-     let num=this.userInput[index-1],pi=22/7;
-     this.result=num*pi;
-     console.log(num*pi)
+      const index = this.userInput.toString().indexOf("π");
+      let num = this.userInput[index - 1], pi = 22 / 7;
+      this.result = num * pi;
+      console.log(num * pi);
+
+    }
+    if (this.operator === "e") {
+      console.log(this.operator);
+      const index = this.userInput.toString().indexOf("e");
+      let num = this.userInput[index - 1], e = 2.7182818285;
+      this.result = num * e;
+      console.log(num * e);
+
+    }
+    // if(this.operator==="²"){
+    //   console.log(this.operator);
+    //   const index = this.userInput.toString().indexOf("²");
+    //   let num = this.userInput[index - 1]
+    //   this.result = num * num;  
+
+    // }
+    if (this.operator === "²") {
+      console.log(this.userInput.split(this.operator));
+      this.inputArr = this.userInput.split(this.operator);
+      const index = this.userInput.indexOf("²")
+      console.log(index);
+      console.log(this.userInput[index - 1]);
+      this.result = this.userInput[index - 1] * this.userInput[index - 1];
+
+    }
+    if (this.operator === "^") {
+      console.log(this.operator);
+      const index = this.userInput.toString().indexOf("^");
+      if (!this.userInput[index + 1]) this.result = null
+
+      // console.log(this.userInput[index-1],this.userInput[index+1])
+      else {
+        const num = Math.pow(this.userInput[index - 1], this.userInput[index + 1]);
+        this.result = num;
+      }
+
+
+    }
+    if(this.operator==="cos("){
+      console.log(this.operator);
+      const index = this.userInput.toString().indexOf("cos(");
+      console.log(index);
+      console.log(this.userInput[index+4]);
+      let num= Math.cos(this.userInput[index+4])
+      this.result=num;
+      
       
 
-
     }
+
+
+
+
 
   }
   showAns() {
@@ -198,11 +215,6 @@ export class CalcComponent implements OnInit {
     } else {
       this.userInput = this.userInput;
     }
-
-
-
-
-
 
   }
   // ///////
