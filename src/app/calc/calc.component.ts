@@ -184,20 +184,32 @@ export class CalcComponent implements OnInit {
     }
     if (this.operator === "cos(") {
       console.log(this.operator);
-      const index = this.userInput.toString().indexOf("cos(");
+      const index = this.userInput.toString().indexOf("cos(")+4;
       console.log(index);
-      console.log(this.userInput[index + 4]);
-      let num = Math.cos(this.userInput[index + 4])
+      // console.log(this.userInput[index + 4]);
+      console.log(this.userInput.slice(index));
+      console.log(eval(this.userInput.slice(index)));
+      let num = Math.cos(eval(this.userInput.slice(index)))
       this.result = num;
 
 
     }
+    // if(this.operator==="cos("){
+    //   this.inputArr=this.userInput.split(this.operator);
+    //   console.log(this.inputArr)
+    //   // let num=eval(this.inputArr);
+    //   // console.log(num)
+    //   // let m=Math.cos(num);
+    //   // this.result=m;
+
+    // }
     if (this.operator === "sin(") {
       console.log(this.operator);
       const index = this.userInput.toString().indexOf("sin(");
       console.log(index);
       console.log(this.userInput[index + 4]);
-      let num = Math.sin(this.userInput[index + 4])
+      // console.log(eval(this.userInput+4))
+      let num = Math.sin(eval(this.userInput[index + 4]))
       this.result = num;
 
 
@@ -235,42 +247,49 @@ export class CalcComponent implements OnInit {
 
 
     }
-    if (this.operator === "ln(") {
-      const index = this.userInput.toString().indexOf("ln(");
-      // let num= Math.log10(this.userInput[index+4])
-      console.log(this.userInput[index + 3], this.userInput[index - 1])
+    // if (this.operator === "ln(") {
+    //   const index = this.userInput.toString().indexOf("ln(");
+    //   // let num= Math.log10(this.userInput[index+4])
+    //   console.log(this.userInput[index + 3], this.userInput[index - 1])
 
-      const num = (!this.userInput[index - 1]) ?
-        Math.log(this.userInput[index + 3]) : (this.userInput[index - 1] * Math.log(this.userInput[index + 3]))
-      // const num=Math.log10(eval(this.userInput))
-      this.result = num;
-      // this.userInput=this.result
+    //   const num = (!this.userInput[index - 1]) ?
+    //     Math.log(this.userInput[index + 3]) : (this.userInput[index - 1] * Math.log(this.userInput[index + 3]))
+    //   // const num=Math.log10(eval(this.userInput))
+    //   this.result = num;
+    //   // this.userInput=this.result
 
 
+    // }
+    if(this.operator==="ln("){
+      this.inputArr=this.userInput.split(this.operator);
+      console.log(this.inputArr)
+      const num=(!this.inputArr[0])?Math.log(this.inputShow[1]):(this.inputArr[0]*Math.log(this.inputArr[1]))
+      this.result=num;
     }
 
-    if (this.userInput.includes("+")) {
-      this.inputArr = this.userInput.split(this.operator)
-      console.log(this.inputArr);
-      let sum = 0;
-      for (let index = 0; index < this.inputArr.length - 1; index++) {
+    // if (this.userInput.includes("+")) {
+    //   this.inputArr = this.userInput.split(this.operator)
+    //   console.log(this.inputArr);
+    //   let sum = 0;
+    //   for (let index = 0; index < this.inputArr.length ; index++) {
 
-        console.log(index, this.inputArr[index]);
-        sum = sum + parseFloat(this.inputArr[index])
-      }
-      console.log(this.inputArr.splice(0, 2, sum));
+    //     console.log(index, this.inputArr[index]);
+    //     sum = sum + parseFloat(this.inputArr[index])
+    //   }
+    //   this.inputArr.splice(0, this.inputArr.length, sum)
+    //   console.log(this.inputArr);
 
-      console.log(sum)
-      // let index=this.inputArr.indexOf(this.operator)
-      // console.log(index)
+    //   console.log(sum)
+    //   // let index=this.inputArr.indexOf(this.operator)
+    //   // console.log(index)
 
-      // let total = parseFloat(this.inputArr[0]) + parseFloat(this.inputArr[1]);
-      // console.log(total)
-      // this.inputArr.splice(0, 3, total);
-      // console.log(this.inputArr)
-      // let total=parsefloat(this.inputArr[index])
+    //   // let total = parseFloat(this.inputArr[0]) + parseFloat(this.inputArr[1]);
+    //   // console.log(total)
+    //   // this.inputArr.splice(0, 3, total);
+    //   // console.log(this.inputArr)
+    //   // let total=parsefloat(this.inputArr[index])
 
-    }
+    // }
 
 
 
