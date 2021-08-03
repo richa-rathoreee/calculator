@@ -12,6 +12,7 @@ export class CalcComponent implements OnInit {
   result: any = "";
   operator: any = "";
   inputArr: any = [];
+  inv: any = false;
 
 
   constructor() {
@@ -32,6 +33,21 @@ export class CalcComponent implements OnInit {
     this.inputShow = "";
 
   }
+  openBracket() {
+    this.userInput = this.userInput + "(";
+
+
+  }
+
+  closeBracket() {
+    this.userInput = this.userInput + ")";
+
+  }
+  inverse() {
+    this.inv = true;
+
+  }
+
   //key number press function
   pressKey(num: any) {
     //Do Not Allow . more than once
@@ -110,81 +126,65 @@ export class CalcComponent implements OnInit {
   // get the result of expression
   getAnswer() {
     console.log(this.userInput);
-    console.log(this.operator)
-
-    // if (this.operator === "+" || this.operator === "-" || this.operator === "/" || this.operator === "*") {
-    //   this.result = eval(this.userInput);
 
 
-    // }
-    if (this.operator === "%") {
-      const index = this.userInput.toString().indexOf("%");
-      console.log(index);
-      let num = this.userInput[index - 1];
-      let percent = (this.userInput[index + 1]) ? (num * this.userInput[index + 1]) : (num / 100);
-      this.result = percent;
-
+    if (this.operator === "+" || this.operator === "-" || this.operator === "/" || this.operator === "*") {
+      this.result = eval(this.userInput);
 
     }
+    if (this.operator === "%") {
+      this.inputArr = this.userInput.split(this.operator)
+      console.log(this.inputArr);
+      // let percent=this.userInput[0]/100+"%";
+      let percent = (this.inputArr[1]) ? (this.inputArr[0] * this.inputArr[1]) / 100 + "%" : (this.inputArr[0] / 100);
+
+      this.result = percent;
+    }
     if (this.operator === "!") {
-      const index = this.userInput.toString().indexOf("!");
-      console.log(index);
-      let num = this.userInput[index - 1], fact = 1;
+      this.inputArr = this.userInput.split(this.operator);
+      let num = this.inputArr[0], fact = 1;
       for (let i = num; i > 0; i--) {
         fact *= i;
-        console.log(fact);
-
+        console.log(fact)
       }
       this.result = fact;
     }
+
     if (this.operator === "π") {
-      console.log(this.operator)
-      const index = this.userInput.toString().indexOf("π");
-      let num = this.userInput[index - 1], pi = 22 / 7;
+      this.inputArr = this.userInput.split(this.operator);
+      let num = this.inputArr[0], pi = 22 / 7;
       this.result = num * pi;
       console.log(num * pi);
 
     }
     if (this.operator === "e") {
-      console.log(this.operator);
-      const index = this.userInput.toString().indexOf("e");
-      let num = this.userInput[index - 1], e = 2.7182818285;
+      this.inputArr = this.userInput.split(this.operator);
+      let num = this.inputArr[0], e = 2.7182818285;
       this.result = num * e;
       console.log(num * e);
 
-    }
-    // if(this.operator==="²"){
-    //   console.log(this.operator);
-    //   const index = this.userInput.toString().indexOf("²");
-    //   let num = this.userInput[index - 1]
-    //   this.result = num * num;  
 
-    // }
+    }
+
     if (this.operator === "²") {
-      console.log(this.userInput.split(this.operator));
       this.inputArr = this.userInput.split(this.operator);
-      const index = this.userInput.indexOf("²")
-      console.log(index);
-      console.log(this.userInput[index - 1]);
-      this.result = this.userInput[index - 1] * this.userInput[index - 1];
+      this.result = this.inputArr[0] * this.inputArr[0];
 
     }
     if (this.operator === "^") {
       console.log(this.operator);
-      const index = this.userInput.toString().indexOf("^");
-      if (!this.userInput[index + 1]) this.result = null
 
-      // console.log(this.userInput[index-1],this.userInput[index+1])
+      this.inputArr = this.userInput.split(this.operator);
+      console.log(this.inputArr);
+      if (!this.inputArr[1]) this.result = null;
       else {
-        const num = Math.pow(this.userInput[index - 1], this.userInput[index + 1]);
+        const num = Math.pow(this.inputArr[0], this.inputArr[1])
         this.result = num;
       }
-
-
     }
     if (this.operator === "cos(") {
       console.log(this.operator);
-      const index = this.userInput.toString().indexOf("cos(")+4;
+      const index = this.userInput.toString().indexOf("cos(") + 4;
       console.log(index);
       // console.log(this.userInput[index + 4]);
       console.log(this.userInput.slice(index));
@@ -247,24 +247,13 @@ export class CalcComponent implements OnInit {
 
 
     }
-    // if (this.operator === "ln(") {
-    //   const index = this.userInput.toString().indexOf("ln(");
-    //   // let num= Math.log10(this.userInput[index+4])
-    //   console.log(this.userInput[index + 3], this.userInput[index - 1])
-
-    //   const num = (!this.userInput[index - 1]) ?
-    //     Math.log(this.userInput[index + 3]) : (this.userInput[index - 1] * Math.log(this.userInput[index + 3]))
-    //   // const num=Math.log10(eval(this.userInput))
-    //   this.result = num;
-    //   // this.userInput=this.result
 
 
-    // }
-    if(this.operator==="ln("){
-      this.inputArr=this.userInput.split(this.operator);
+    if (this.operator === "ln(") {
+      this.inputArr = this.userInput.split(this.operator);
       console.log(this.inputArr)
-      const num=(!this.inputArr[0])?Math.log(this.inputShow[1]):(this.inputArr[0]*Math.log(this.inputArr[1]))
-      this.result=num;
+      const num = (!this.inputArr[0]) ? Math.log(this.inputShow[1]) : (this.inputArr[0] * Math.log(this.inputArr[1]))
+      this.result = num;
     }
 
     // if (this.userInput.includes("+")) {
@@ -291,13 +280,46 @@ export class CalcComponent implements OnInit {
 
     // }
 
+    if (this.operator === "sin-1(") {
+      this.inputArr = this.userInput.split(this.operator)
+      console.log(this.inputArr)
+      if (!this.inputArr[1]) {
+        this.result = null;
+      }
+      const num = Math.log(this.inputArr[1]);
+      this.result = num
 
+
+    }
+    if (this.operator === "cos-1(") {
+      this.inputArr = this.userInput.split(this.operator)
+      console.log(this.inputArr)
+      if (!this.inputArr[1]) {
+        this.result = null;
+      }
+      const num = Math.log(this.inputArr[1]);
+      this.result = num
+
+
+    }
+    if (this.operator === "tan-1(") {
+      this.inputArr = this.userInput.split(this.operator)
+      console.log(this.inputArr)
+      if (!this.inputArr[1]) {
+        this.result = null;
+      }
+      const num = Math.log(this.inputArr[1]);
+      this.result = num
+
+
+    }
 
 
   }
   showAns() {
     const res = document.getElementById("res") as HTMLElement
     res.style.fontSize = "50px"
+    this.userInput = ""
     this.result = this.result
 
   }
@@ -317,9 +339,6 @@ export class CalcComponent implements OnInit {
 
   }
   // ///////
-
-
-
 
 
   ngOnInit(): void {
