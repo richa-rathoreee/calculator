@@ -35,8 +35,7 @@ export class CalcComponent implements OnInit {
   }
   openBracket() {
     this.userInput = this.userInput + "(";
-
-
+    
   }
 
   closeBracket() {
@@ -152,7 +151,11 @@ export class CalcComponent implements OnInit {
 
     if (this.operator === "π") {
       this.inputArr = this.userInput.split(this.operator);
+      console.log(this.inputArr)
       let num = this.inputArr[0], pi = 22 / 7;
+      console.log(num);
+      if(!this.inputArr[0]) this.result=3.1415926536
+
       this.result = num * pi;
       console.log(num * pi);
 
@@ -194,40 +197,43 @@ export class CalcComponent implements OnInit {
 
 
     }
-    // if(this.operator==="cos("){
-    //   this.inputArr=this.userInput.split(this.operator);
-    //   console.log(this.inputArr)
-    //   // let num=eval(this.inputArr);
-    //   // console.log(num)
-    //   // let m=Math.cos(num);
-    //   // this.result=m;
+    if(this.operator==="cos("){
+      this.inputArr=this.userInput.split(this.operator);
+      console.log(this.inputArr)
+      let num=Math.cos(this.inputArr[1]);
+      this.result=num;
 
-    // }
+    }
     if (this.operator === "sin(") {
-      console.log(this.operator);
-      const index = this.userInput.toString().indexOf("sin(");
-      console.log(index);
-      console.log(this.userInput[index + 4]);
-      // console.log(eval(this.userInput+4))
-      let num = Math.sin(eval(this.userInput[index + 4]))
-      this.result = num;
+
+      this.inputArr=this.userInput.split(this.operator);
+      console.log(this.inputArr)
+      let num=Math.sin(this.inputArr[1]);
+      this.result=num;
+      // console.log(this.operator);
+      // const index = this.userInput.toString().indexOf("sin(");
+      // console.log(index);
+      // console.log(this.userInput[index + 4]);
+      // // console.log(eval(this.userInput+4))
+      // let num = Math.sin(eval(this.userInput[index + 4]))
+      // this.result = num;
 
 
     }
     if (this.operator === "tan(") {
-      console.log(this.operator);
-      const index = this.userInput.toString().indexOf("tan(");
-      console.log(index);
-      console.log(this.userInput[index + 4]);
-      let num = Math.sin(this.userInput[index + 4])
-      this.result = num;
+      this.inputArr=this.userInput.split(this.operator);
+      console.log(this.inputArr)
+      let num=Math.tan(this.inputArr[1]);
+      this.result=num;
 
     }
     if (this.operator === "√") {
+      this.inputArr=this.userInput.split(this.operator);
+
       console.log(this.operator);
-      const index = this.userInput.toString().indexOf("√");
-      if (!this.userInput[index + 1]) this.result = null;
-      const num = (!this.userInput[index - 1]) ? Math.sqrt(this.userInput[index + 1]) : (this.userInput[index - 1] * Math.sqrt(this.userInput[index + 1])
+      // const index = this.userInput.toString().indexOf("√");
+      if (!this.inputArr[ 1]) this.result = null;
+      const num = (!this.inputArr[0]) ? Math.sqrt(this.inputArr[ 1]) : (this.inputArr[0] * Math.sqrt(this.inputArr[1])
       )
 
       this.result = num;
