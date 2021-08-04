@@ -105,3 +105,26 @@ export class CalccComponent implements OnInit {
   }
 
 }
+    // if (this.userInput.includes("+")) {
+    //   this.inputArr = this.userInput.split(this.operator)
+    //   console.log(this.inputArr);
+    //   let sum = 0;
+    //   for (let index = 0; index < this.inputArr.length ; index++) {
+
+    //     console.log(index, this.inputArr[index]);
+    //     sum = sum + parseFloat(this.inputArr[index])
+    //   }
+    //   this.inputArr.splice(0, this.inputArr.length, sum)
+    //   console.log(this.inputArr);
+
+    //   console.log(sum)
+    //   // let index=this.inputArr.indexOf(this.operator)
+    //   // console.log(index)
+
+    //   // let total = parseFloat(this.inputArr[0]) + parseFloat(this.inputArr[1]);
+    //   // console.log(total)
+    //   // this.inputArr.splice(0, 3, total);
+    //   // console.log(this.inputArr)
+    //   // let total=parsefloat(this.inputArr[index])
+
+    // }

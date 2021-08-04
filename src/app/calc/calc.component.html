@@ -81,8 +81,11 @@
 <p>calcc works!</p>
 
 <div class="container">
+    <div class="deg-msg" *ngIf="deg">deg</div>
+    <div class="rad-msg" *ngIf="!deg">rad</div>
     <div class="upper">
         <!-- // User Input -->
+        
 
         <div class="display-input wrap" type="text" id="userinput">{{userInput}}</div>
         
@@ -96,8 +99,10 @@
     <div class="container-buttons">
     <div class="sc-fi">
         <div class="row first-row">
-            <button class=" btn controls key rad ">Rad|Deg</button>
-            <button class=" btn controls key not"(click)="pressOperator('!')">x!</button>
+            <button class=" btn controls key rad" *ngIf="deg" (click)="degree()">Deg</button>
+            <button class=" btn controls key rad "*ngIf="!deg"(click)="radian()">Rad</button>
+
+
             <button class="btn controls key braket" (click)="openBracket()">(</button>
             <button class="btn controls key braket" (click)="closeBracket()">)</button>
 
@@ -132,7 +137,8 @@
             
         </div>
         <div class="row first-row">
-            <button class="btn controls key log ">Ans</button>
+            <button class=" btn controls key not"(click)="pressOperator('!')">x!</button>
+            
             <button class="btn controls key "(click)="pressOperator('²')">x²</button>
             <button class="btn controls key Lnv"(click)="pressOperator('^')">x^y</button>
             

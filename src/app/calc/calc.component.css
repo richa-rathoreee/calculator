@@ -13,7 +13,9 @@
     margin: auto;
     padding: 10px;
     border-radius: 10px;
-    /* background-color: #fff; */
+  
+    box-shadow: 2px 2px 5px #333;
+
 }
 .container-buttons{
     display: grid;
