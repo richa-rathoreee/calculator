@@ -1,81 +1,3 @@
-<!-- <p>calc works!</p>
-
-
-<div class="container" id="e" >
-    <div class="upper">
-        <div>
-        <div class="">
-            123
-        </div>
-        <div class="">
-            123
-        </div>
-        </div>
-    </div>
-    <div class="lower">
-        <div class="controls orange">
-            AC
-        </div>
-        <div class="controls orange">
-            +-
-        </div>
-        <div class="controls orange">
-            %
-        </div>
-        <div class="controls orange">
-            <i class="fas fa-divide"></i>
-        </div>
-        <div class="controls grey">
-            7
-        </div>
-        <div class="controls grey">
-            8
-        </div>
-        <div class="controls grey">
-            9
-        </div>
-        <div class="controls orange">
-            x
-        </div>
-        <div class="controls grey">
-            4
-        </div>
-        <div class="controls grey">
-            5
-        </div>
-        <div class="controls grey">
-            6
-        </div>
-        <div class="controls orange">
-            -
-        </div>
-        <div class="controls grey">
-            1
-        </div>
-        <div class="controls grey">
-            2
-        </div>
-        <div class="controls grey">
-            3
-        </div>
-        <div class="controls orange">
-            +
-        </div>
-        <div class="controls grey">
-            0
-        </div>
-        <div class="controls grey">
-            .
-        </div>
-        <div class="controls orange">
-            <i class="fas fa-backspace"></i>
-        </div>
-        <div class="controls orange equal">
-            =
-        </div>
-
-    </div>
-</div> -->
 
 
 <p>calcc works!</p>
@@ -85,12 +7,8 @@
     <div class="rad-msg" *ngIf="!deg">rad</div>
     <div class="upper">
         <!-- // User Input -->
-        
-
         <div class="display-input wrap" type="text" id="userinput">{{userInput}}</div>
         
-
-
         <!-- Results -->
         <!-- <div class="display-result" *ngIf="!result" id ="userinput">{{userInput}}</div> -->
         <div class="display-result" type="text" id="res">{{result}}</div>
@@ -125,6 +43,8 @@
         <div class="row first-row">
             <button class=" btn controls log key "(click)="pressOperator('π')">π</button>
             <button class=" btn controls log key "(click)="pressOperator('³')">x³</button>
+            <button class=" btn controls log key "(click)="pressOperator('2^')">2^x</button>
+
 
 
             <button class="btn controls key ln" *ngIf="!inv" (click)="pressOperator('cos(')">cos</button>
