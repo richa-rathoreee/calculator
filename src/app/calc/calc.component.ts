@@ -30,6 +30,8 @@ export class CalcComponent implements OnInit {
   //backspace
   backSpace() {
     this.userInput = this.userInput.substr(0, this.userInput.length - 1);
+    console.log(this.userInput)
+   
     this.result = "";
 
   }
@@ -40,6 +42,7 @@ export class CalcComponent implements OnInit {
 
   closeBracket() {
     this.userInput = this.userInput + ")";
+    console.log(this.userInput)
 
   }
   inverse() {
@@ -203,8 +206,64 @@ export class CalcComponent implements OnInit {
         this.result = num;
       }
     }
-    if (this.operator === "cos(") {
+    if(this.operator==="e^"){
+      console.log(this.operator)
+      this.inputArr = this.userInput.split(this.operator);
+      console.log(this.inputArr);
+      if (!this.inputArr[1]) this.result = null;
+      else {
+        const num = Math.exp(this.inputArr[1]);
+        this.result = num;
+      }
+
+    }
+    if(this.operator==="1/"){
       console.log(this.operator);
+      let index= this.userInput.indexOf("1/")+2
+      console.log(index);
+      let sub = eval(this.userInput.slice(index)), num;
+      num=1/sub;
+      this.result=num;
+
+    }
+    if(this.operator==="∛"){
+      console.log(this.operator);
+      let index= this.userInput.indexOf("∛")+1
+      console.log(index);
+      let sub = eval(this.userInput.slice(index)), num;
+      num=Math.cbrt(sub)
+      this.result=num;
+      
+    }
+    if(this.operator==="³"){
+      let index= this.userInput.indexOf("³");
+      let sub1 =this.userInput.slice(0,index).split("")
+     sub1=eval( sub1.join(""))
+      console.log(sub1);
+      let cube =sub1*sub1*sub1
+let sub2=eval(this.userInput.slice(index+1))
+console.log(sub2)  
+    this.result=cube;
+
+    
+
+      // this.inputArr = this.userInput.split(this.operator);
+      // let cube = this.inputArr[0] * this.inputArr[0]*this.inputArr[0];
+
+      // let index= this.userInput.indexOf("³")
+      
+      // console.log(index);
+      // let sub = eval(this.userInput.slice(index)), num;
+      
+      // this.result=sub;
+      // this.result=cube;
+
+    }
+    
+    if (this.operator === "cos(") {
+
+      console.log(this.operator);
+      console.log(this.userInput)
       const index = this.userInput.toString().indexOf("cos(") + 4;
       console.log(index);
       let sub = eval(this.userInput.slice(index)), num;

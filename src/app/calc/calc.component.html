@@ -105,12 +105,16 @@
 
             <button class="btn controls key braket" (click)="openBracket()">(</button>
             <button class="btn controls key braket" (click)="closeBracket()">)</button>
+            <button class="btn controls key Lnv"(click)="inverse()">lnv</button>
+
 
 
         </div>
         <div class="row first-row">
             <button class=" btn controls key  log " (click)="pressOperator('log(')">log</button>
             <button class="btn controls key " (click)="pressOperator('ln(')">ln</button>
+            <button class="btn controls key " (click)="pressOperator('e^')">e^x</button>
+
             <button class="btn controls key Lnv"*ngIf="!inv" (click)="pressOperator('sin(')">sin</button>
 
             <button class="btn controls key Lnv"*ngIf="inv" (click)="pressOperator('sin-1(')">sin-1</button>
@@ -120,7 +124,8 @@
    
         <div class="row first-row">
             <button class=" btn controls log key "(click)="pressOperator('π')">π</button>
-            <button class="btn controls key Lnv"(click)="inverse()">lnv</button>
+            <button class=" btn controls log key "(click)="pressOperator('³')">x³</button>
+
 
             <button class="btn controls key ln" *ngIf="!inv" (click)="pressOperator('cos(')">cos</button>
             <button class="btn controls key Lnv" *ngIf="inv" (click)="pressOperator('cos-1(')">cos-1</button>
@@ -130,6 +135,8 @@
         <div class="row first-row">
             <button class="btn controls key log " (click)="pressOperator('e')">e</button>
             <button class="btn controls key Lnv"(click)="pressOperator('√')">√</button>
+            <button class="btn controls key " (click)="pressOperator('1/')">1/x</button>
+
             <button class="btn controls key ln" *ngIf="!inv"  (click)="pressOperator('tan(')">tan</button>
 
             <button class="btn controls key Lnv"*ngIf="inv" (click)="pressOperator('tan-1(')">tan-1</button>
@@ -138,6 +145,8 @@
         </div>
         <div class="row first-row">
             <button class=" btn controls key not"(click)="pressOperator('!')">x!</button>
+            <button class=" btn controls key not"(click)="pressOperator('∛')"> ∛</button>
+            
             
             <button class="btn controls key "(click)="pressOperator('²')">x²</button>
             <button class="btn controls key Lnv"(click)="pressOperator('^')">x^y</button>
