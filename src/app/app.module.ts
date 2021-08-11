@@ -8,6 +8,7 @@ import { CalcComponent } from './calc/calc.component';
 
 import { StringComponent } from './string/string.component';
 import { CalccComponent } from './calcc/calcc.component';
+import { LoopsComponent } from './loops/loops.component';
 
 
 
@@ -17,6 +18,7 @@ import { CalccComponent } from './calcc/calcc.component';
     CalcComponent,
     StringComponent,
     CalccComponent,
+    LoopsComponent,
  
 
     

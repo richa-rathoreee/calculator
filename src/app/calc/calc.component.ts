@@ -47,7 +47,8 @@ export class CalcComponent implements OnInit {
   }
 
   inverse() {
-    this.inv = true;
+    this.inv = this.inv ? false : true
+
 
   }
   degree(): any {
@@ -127,8 +128,8 @@ export class CalcComponent implements OnInit {
     console.log(lastKey)
     //operand dont repeat
     if (lastKey === '/' || lastKey === '*' ||
-      lastKey === '-' || lastKey === '+'
-      || lastKey === "%" || lastKey === "!" || lastKey === "π") {
+      lastKey === '-' || lastKey === '+' || lastKey === '%'
+      || lastKey === "!" || lastKey === "π") {
       return;
     }
     this.userInput += oprate;
@@ -149,51 +150,48 @@ export class CalcComponent implements OnInit {
     }
     //for % operation
     if (this.operator === "%") {
-      this.inputArr = this.userInput.split(this.operator)
-      console.log(this.inputArr);
-      // let percent=this.userInput[0]/100+"%";
-      let percent = (this.inputArr[1]) ?
-        (this.inputArr[0] * this.inputArr[1]) / 100 + "%" : (this.inputArr[0] / 100) + "%";
+      let index = this.userInput.indexOf("%");
+      let sub1 = this.userInput.slice(0, index)
+      sub1 = eval(sub1);
+      this.userInput = sub1 + "/" + "100" + (Number(this.userInput[index + 2]) ? "/" : '')
+        + this.userInput.slice(index + 2);
+      this.result = eval(this.userInput);
 
-      this.result = percent;
     }
+
     // for factorial
     if (this.operator === "!") {
       let index = this.userInput.indexOf("!");
-      // let sub1 = this.userInput.slice(0, index).split("")
-      // sub1 = eval(sub1.join(""));
       let sub1 = this.userInput.slice(0, index)
       sub1 = eval(sub1)
-      console.log(sub1);
       let num = sub1, fact = 1;
       for (let i = num; i > 0; i--) {
         fact *= i;
-        console.log(fact)
+        this.userInput = fact + (+(this.userInput[index + 1]) ? "*" : '')
+          + this.userInput.slice(index + 2);
+        console.log(fact);
+        console.log(this.userInput);
       }
-      this.result = fact;
-      (num < 0) ? this.result = "no such factorial" : this.result
-
+      this.result = (num < 0) ? "no such factorial" : eval(this.userInput)
     }
+
     //for pi
     if (this.operator === "π") {
       let index = this.userInput.indexOf("π");
       let sub1 = this.userInput.slice(0, index)
-       sub1=eval(sub1);
-      let num = sub1, pi = 22 / 7;
-      console.log(num);
-      if (!this.inputArr[0]) this.result = 3.1415926536
-      this.result = num * pi;
-      console.log(num * pi);
-
+      sub1 = eval(sub1);
+      this.userInput = sub1 + "*" + "22" + "/" + "7" + (Number(this.userInput[index + 1]) ? "*" : '')
+        + this.userInput.slice(index + 2);
+      this.result = eval(this.userInput);
     }
     // for e btn 
     if (this.operator === "e") {
-      this.inputArr = this.userInput.split(this.operator);
-      let num = this.inputArr[0], e = 2.7182818285;
-      this.result = num * e;
-      console.log(num * e);
-
-
+      let index = this.userInput.indexOf("e");
+      let sub1 = this.userInput.slice(0, index);
+      sub1 = eval(sub1);
+      this.userInput = sub1 + "*" + "2.7182818285" + (+(this.userInput[index + 2]) ? "*" : '')
+        + this.userInput.slice(index + 2);
+      this.result = eval(this.userInput);
     }
     //for square
     if (this.operator === "²") {
@@ -203,44 +201,9 @@ export class CalcComponent implements OnInit {
       sub1 = eval(sub1.join(""))
       console.log(sub1);
       let square = sub1 * sub1
-      this.result = square;
-    }
 
-    //for ^ power     
-    if (this.operator === "^") {
-      let index = this.userInput.indexOf("²");
-      console.log(index);
-      let sub1 = this.userInput.slice(0, index)
-      sub1=eval(sub1);
-      this.inputArr = this.userInput.split(this.operator);
-      console.log(this.inputArr);
-        const num = Math.pow(sub1, this.inputArr[1])
-        this.result = num;
-      
-    }
-    //2^x
-    if (this.operator === "2^") {
-      // let index = this.userInput.indexOf("2^")+1;
-      // console.log(index);
-      // let sub1 = this.userInput.slice(0, index)
-      // sub1=eval(sub1);
-      this.inputArr = this.userInput.split(this.operator);
-      console.log(this.inputArr);
-        const num = Math.pow(2, this.inputArr[1])
-        this.result = num;
-      
-    }
-    // for exponential    
-    if (this.operator === "e^") {
-      console.log(this.operator)
-      this.inputArr = this.userInput.split(this.operator);
-      console.log(this.inputArr);
-      if (!this.inputArr[1]) this.result = null;
-      else {
-        const num = Math.exp(this.inputArr[1]);
-        this.result = num;
-      }
-
+      this.userInput = square + (+(this.userInput[index + 2]) ? "*" : '') + this.userInput.slice(index + 2);
+      this.result = eval(this.userInput)
     }
     // for 1/number    
     if (this.operator === "1/") {
@@ -254,16 +217,6 @@ export class CalcComponent implements OnInit {
       this.result = num;
 
     }
-    //for cube root     
-    if (this.operator === "∛") {
-      console.log(this.operator);
-      let index = this.userInput.indexOf("∛") + 1
-      console.log(index);
-      let sub = eval(this.userInput.slice(index)), num;
-      num = Math.cbrt(sub)
-      this.result = num;
-
-    }
     // cube    
     if (this.operator === "³") {
       let index = this.userInput.indexOf("³");
@@ -271,14 +224,67 @@ export class CalcComponent implements OnInit {
       let sub1 = this.userInput.slice(0, index).split("")
       sub1 = eval(sub1.join(""))
       console.log(sub1);
-      let cube = sub1 * sub1 * sub1
-      // let sub2=cube.toString().concat(this.userInput.slice(index+1))
-      // this.result=eval(sub2)
+      let square = sub1 * sub1 * sub1
 
-      this.result = cube;
+      this.userInput = square + (Number(this.userInput[index + 2]) ? "*" : '') + this.userInput.slice(index + 2);
+      this.result = eval(this.userInput)
+
+    }
+
+    //for ^ power     
+    if (this.operator === "^") {
+      let index = this.userInput.indexOf("^");
+      console.log(index);
+      let sub1 = this.userInput.slice(0, index)
+      sub1 = eval(sub1);
+      this.inputArr = this.userInput.split(this.operator);
+      console.log(this.inputArr);
+      const num = Math.pow(sub1, this.inputArr[1])
 
 
     }
+    //2^x
+    if (this.operator === "2^") {
+      let index = this.userInput.indexOf("2^") + 1;
+      console.log(index);
+      let sub1 = this.userInput.slice(0, index)
+      sub1 = eval(sub1);
+
+      this.inputArr = this.userInput.split(this.operator);
+
+      console.log(this.inputArr);
+      const num = Math.pow(2, this.inputArr[1])
+
+      // this.userInput=sub1+"*"+this.operator +this.inputArr[1]
+
+      // this.result=eval(sub1);
+      this.result = num;
+
+    }
+    // for exponential    
+    if (this.operator === "e^") {
+      console.log(this.operator)
+      this.inputArr = this.userInput.split(this.operator);
+      console.log(this.inputArr);
+      if (!this.inputArr[1]) this.result = null;
+      else {
+        const num = Math.exp(this.inputArr[1]);
+        this.result = num;
+      }
+
+    }
+
+    //for cube root     
+    if (this.operator === "∛") {
+
+      let index = this.userInput.indexOf("∛")
+      console.log(index)
+      console.log((eval(this.userInput.slice(index + 1))))
+      let sub = eval(this.userInput.slice(index + 1)), num;
+      num = Math.cbrt(sub)
+      this.result = num
+    }
+
     // cosine
     if (this.operator === "cos(") {
 
@@ -325,7 +331,7 @@ export class CalcComponent implements OnInit {
       let sub = eval(this.userInput.slice(index)), num;
       if (this.deg) {
         console.log("deg");
-        num = Math.cos(eval(sub) * -57.2958)
+        num = Math.cos(eval(sub) * (Math.PI / 180))
 
       }
       else {
@@ -349,6 +355,15 @@ export class CalcComponent implements OnInit {
 
     //log 10
     if (this.operator === "log(") {
+      // let index=this.userInput.indexOf("log(")+3;
+      // console.log(this.userInput.length-1);
+      // console.log(index+1,this.userInput[index+1]);
+
+
+      // let sub=this.userInput.slice(index+1,this.userInput.length);
+      // console.log(sub);
+      // console.log(eval(sub))
+      // this.result=eval(sub)
       this.inputArr = this.userInput.split(this.operator);
 
       console.log(this.operator);
@@ -370,6 +385,8 @@ export class CalcComponent implements OnInit {
     }
     //sin inverse
     if (this.operator === "sin-1(") {
+      // let index=this.userInput.indexOf("sin-1(")+5;
+
       this.inputArr = this.userInput.split(this.operator)
       console.log(this.inputArr)
       if (!this.inputArr[1]) {

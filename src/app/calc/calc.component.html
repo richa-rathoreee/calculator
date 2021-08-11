@@ -3,8 +3,8 @@
 <p>calcc works!</p>
 
 <div class="container">
-    <div class="deg-msg" *ngIf="deg">deg</div>
-    <div class="rad-msg" *ngIf="!deg">rad</div>
+    <div class="deg-msg  operations" *ngIf="deg">deg</div>
+    <div class="rad-msg  operations" *ngIf="!deg">rad</div>
     <div class="upper">
         <!-- // User Input -->
         <div class="display-input wrap" type="text" id="userinput">{{userInput}}</div>
@@ -17,13 +17,13 @@
     <div class="container-buttons">
     <div class="sc-fi">
         <div class="row first-row">
-            <button class=" btn controls key rad" *ngIf="deg" (click)="degree()">Deg</button>
-            <button class=" btn controls key rad "*ngIf="!deg"(click)="radian()">Rad</button>
+            <button class=" btn controls key operations" *ngIf="deg" (click)="degree()">Deg</button>
+            <button class=" btn controls key operations"*ngIf="!deg"(click)="radian()">Rad</button>
 
 
-            <button class="btn controls key braket" (click)="openBracket()">(</button>
-            <button class="btn controls key braket" (click)="closeBracket()">)</button>
-            <button class="btn controls key Lnv"(click)="inverse()">lnv</button>
+            <button class="btn controls key braket  operations" (click)="openBracket()">(</button>
+            <button class="btn controls key braket  operations" (click)="closeBracket()">)</button>
+            <button class="btn controls key Lnv operations"(click)="inverse()">lnv</button>
 
 
 

@@ -20,12 +20,11 @@
 .container-buttons{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    margin: 10px 0px;
+    
 }
 .sc-fi{
-    margin: 10px 0px;
     border-right: 1px grey solid;
-    
-
 }
 .upper{
 
@@ -37,9 +36,7 @@
     flex-direction: column;
     align-items: flex-end;
     justify-content: flex-end;
-    /* overflow: hidden; */
-
-    
+    /* overflow: hidden; *
 }
 .lower{
     display: flex;
@@ -60,15 +57,17 @@
 }
 .btn{
     border:none;
-    background-color: #fff;
+    background-color:rgba(216, 156, 66, 0.116);
+    border-radius: 4px ;
+    margin: 5px;
     font-weight: bold;
     font-size:1.2rem
     
 }
 .btn:hover{
-    background: #ebe6e581;
+    background: #ce94185d;
     cursor: pointer;
-    border-radius: 2px;;
+    border-radius: 8px;
 }
 .operations{
     color:#f16e22fc;
@@ -84,6 +83,9 @@
     border-radius: 3px;
     /* height: 8vh;
     width: 5vw; */
+}
+button.btn.controls.key.operations {
+    color: #f16e22fc;
 }
 .plus-minus{
     display: flex;
